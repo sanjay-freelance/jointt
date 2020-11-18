@@ -8,11 +8,6 @@ const pageLinks = [
 		title: 'Membership',
 		link: '/membership',
 		importPath: 'membership'
-	},
-	{
-		title: 'Theme',
-		link: '/theme',
-		importPath: 'membership'
 	}
 ];
 
