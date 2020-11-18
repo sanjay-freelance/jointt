@@ -1,24 +1,21 @@
-import React, {useState, useEffect, Suspense, lazy} from 'react';
+import React, {useState, useEffect} from 'react';
+
 
 export default function DynamicImport(props){
 	const {path} = props;
-
 	const [Component, setComponent] = useState(null);
 
-	// componentDidMount, componentDidUpdate
 	useEffect(()=>{
-		let uiComponent = lazy(()=> import(`editor/pages/${path}`));
-		setComponent(uiComponent);
-	},[path]);
+		import(`editor/pages/${path}`).then((module)=>{
+			const uiComponent = module.default ? module.default : module;
+			setComponent(uiComponent);
+		});
 
-	if(!Component) {
+	},[]);
+
+	if(!Component){
 		return null;
 	}
 
-	return (
-		<Suspense fallback={<div>Loading...</div>}>
-			<Component/>
-		</Suspense>
-	)
+	return Component;
 }
-

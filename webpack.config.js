@@ -67,6 +67,7 @@ const config = {
 		modules: [path.resolve(__dirname,'src'), 'node_modules'],
 		alias: {
 			'context': path.resolve(__dirname,'src/context/'),
+			'static': path.resolve(__dirname,'static/'),
 			'abstract': path.resolve(__dirname,'src/abstract/'),
 			'editor': path.resolve(__dirname,'src/editor/'),
 			'preview': path.resolve(__dirname,'src/preview/'),
@@ -74,7 +75,7 @@ const config = {
 		}
 	},
 	devServer: {
-		contentBase: path.join(__dirname, '/src'),
+		contentBase: path.join(__dirname, '/'),
 		compress: true,
 	},
 	devtool: 'inline-source-map'
