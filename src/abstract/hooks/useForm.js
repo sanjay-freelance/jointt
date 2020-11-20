@@ -207,6 +207,10 @@ export default function useForm (fields, validators) {
 			// 3. last required field don't update
 			setFields(updateField(formFields, name, changes));
 		}
+		return {
+			fieldName: name,
+			changes: changes
+		}
 	};
 
 	const handleReset = () => {

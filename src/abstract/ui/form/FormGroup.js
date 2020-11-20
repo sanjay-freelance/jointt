@@ -26,7 +26,7 @@ const BorderedDiv = styled('div').attrs(() => ({
 `;
 
 export default function FormGroup (props) {
-	const { metaData, handleChange, editable, formId, fields} = props;
+	const { metaData, handleChange, editable, formId, fields, handleBlur} = props;
 
 	const {children:formChildren, layout} = metaData;
 
@@ -54,6 +54,10 @@ export default function FormGroup (props) {
 
 			let formFieldUi = null;
 			let fieldValue = fieldObj.value;
+			if(fieldName === 'pageName'){
+				console.log(fieldObj)
+			}
+
 			if (type === 'text' || type === 'email') {
 				formFieldUi = (
 					<FormInputField id={fieldId}
@@ -61,6 +65,7 @@ export default function FormGroup (props) {
 													editable={isFieldEditable}
 													isInvalid={isInvalid}
 													onChange={handleChange}
+													onBlur={handleBlur}
 													value={fieldValue}
 													field={fieldObj}/>
 				);
@@ -72,6 +77,7 @@ export default function FormGroup (props) {
 													editable={isFieldEditable}
 													isInvalid={isInvalid}
 													onChange={handleChange}
+													onBlur={handleBlur}
 													field={formElement}/>
 				);
 			}

@@ -82,26 +82,7 @@ const formMetaData = {
 	]
 };
 
-function getFieldsFromMetaData(){
-	const resultObj = {};
-
-	 getFields(formMetaData.children, resultObj);
-	return resultObj;
-}
-
-function getFields(childrenMetaData, resultObj){
-	childrenMetaData.map((childMetadata)=>{
-		const {type, children, name} = childMetadata;
-		if(type == 'group'){
-			getFields(children,resultObj)
-		} else {
-			resultObj[name] = childMetadata;
-		}
-	});
-}
-
 export {
-	getFieldsFromMetaData,
 	validators,
 	formMetaData
 }

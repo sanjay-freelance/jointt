@@ -8,8 +8,8 @@ function useGetPageName(){
 }
 
 function useGetPageDescription(){
-	const {description, setDescription} = useContext(DataContext);
-	return [description,setDescription];
+	const {description, setDesc} = useContext(DataContext);
+	return [description, setDesc];
 }
 
 

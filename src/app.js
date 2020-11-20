@@ -4,6 +4,7 @@ import Header from 'editor/header';
 import Routes from 'abstract/ui/routes';
 import useSticky from 'abstract/hooks/useSticky';
 import {pageLinks} from 'metadata/pageRoute';
+import {ProfileProvider} from 'context/provider';
 import './app.css';
 import styled from "styled-components";
 
@@ -39,6 +40,7 @@ export default function App(props){
 	const {isSticky, element} = useSticky();
 
 	return (
+	<ProfileProvider>
 		<AppDiv>
 			<StyledHeader>
 				<Header links={pageLinks}
@@ -50,6 +52,7 @@ export default function App(props){
 				<Routes links={pageLinks}/>
 			</StyledSection>
 		</AppDiv>
+	</ProfileProvider>
 	)
 }
 

@@ -70,7 +70,6 @@ const config = {
 			'static': path.resolve(__dirname,'static/'),
 			'abstract': path.resolve(__dirname,'src/abstract/'),
 			'editor': path.resolve(__dirname,'src/editor/'),
-			'preview': path.resolve(__dirname,'src/preview/'),
 			'metadata': path.resolve(__dirname,'src/metadata/')
 		}
 	},

@@ -7,9 +7,6 @@ store[PAGE_NAME] = '';
 store[DESCRIPTION] = '';
 
 
-export {
-	store
-}
 
 // action creators // these are dispatched by sending the return type of action creators
 function setPageName(data){
@@ -26,14 +23,18 @@ function setDescription(data){
 	}
 }
 
-function updatePageName(state, newPageName){
-	state[PAGE_NAME] = newPageName;
-	return state;
+// React does object level comparison to trigger changes update
+// hence we have to spread the state to create new state object
+function updatePageName(currentGlobalState, newPageName){
+	const newState = {};
+	newState[PAGE_NAME] = newPageName;
+	return Object.assign({}, currentGlobalState, newState)
 }
 
-function updateDescription(state, newDesc){
-	state[DESCRIPTION] = newDesc;
-	return state;
+function updateDescription(currentGlobalState, newDesc){
+	const newState = {};
+	newState[DESCRIPTION] = newDesc;
+	return Object.assign({}, currentGlobalState, newState)
 
 }
 

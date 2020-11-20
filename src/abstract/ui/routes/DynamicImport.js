@@ -1,24 +1,23 @@
-import React, {useState, useEffect} from 'react';
-
+import React, {useState, useEffect, Suspense, lazy} from 'react';
 
 export default function DynamicImport(props){
 	const {path} = props;
+
 	const [Component, setComponent] = useState(null);
 
-	// todo: webpack chuck are loaded by http request,
-	// that time the path for these chunks are not relative
-	// temp solution: use eager mode
+	// componentDidMount, componentDidUpdate
 	useEffect(()=>{
-		import(/* webpackMode: "eager" */ `editor/pages/${path}`).then((module)=>{
-			const uiComponent = module.default ? module.default : module;
-			setComponent(uiComponent);
-		});
+		let uiComponent = lazy(()=> import(`editor/pages/${path}`));
+		setComponent(uiComponent);
+	},[path]);
 
-	},[]);
-
-	if(!Component){
+	if(!Component) {
 		return null;
 	}
 
-	return Component;
+	return (
+	<Suspense fallback={<div>Loading...</div>}>
+		<Component/>
+	</Suspense>
+	)
 }

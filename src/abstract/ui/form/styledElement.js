@@ -8,6 +8,7 @@ import styled from "styled-components";
     align-items: center;
     justify-content: center;
 `;
+
  const FlexForm = styled('form').attrs(() => ({
 	 className: 'flex-form'
  }))`

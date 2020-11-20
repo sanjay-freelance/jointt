@@ -25,7 +25,8 @@ export default function Form(props) {
 		name,
 		submitLabel,
 		metaData,
-		fields
+		fields,
+		handleFieldChange
 	} = props;
 
 
@@ -42,13 +43,24 @@ export default function Form(props) {
 		reset();
 	};
 
+	function handleChangeAndUpdateReducer(field, oldValue, newValue){
+		handleChange(field,oldValue, newValue);
+		//todo: change this to use return value of handle Change
+		//we might get newValue or validated value
+		handleFieldChange(field, newValue);
+	}
+
+	function handleBlur(field, oldValue){
+		handleChange(field,oldValue);
+	}
 
 	return (
 		<FormContainer>
 			<FlexForm onSubmit={handleSubmit} noValidate>
 				<FormGroup metaData={metaData}
 									 fields={formFields}
-									 handleChange={handleChange}
+									 handleChange={handleChangeAndUpdateReducer}
+									 handleBlur={handleBlur}
 									 editable={editable}
 									 formId={formId} />
 				<ControllerDiv>

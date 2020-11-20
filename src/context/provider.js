@@ -14,15 +14,17 @@ function ProfileProvider(props){
 		/* Once end points are available, data fetching will set initial global state*/
 	},[]);
 
-	function setDesc(symbolName){
-		dispatch(descriptionSetter(symbolName))
+	function setDesc(data){
+		dispatch(descriptionSetter(data))
 	}
 
-	function setPageName(symbolName){
-		dispatch(pageNameSetter(symbolName))
+	function setPageName(data){
+		console.log('setPageName: ', data);
+		dispatch(pageNameSetter(data))
 	}
 
 	const context = { ...globalState, setDesc,setPageName };
+	console.log(context);
 	return (
 	<DataContext.Provider value={context}>
 		{children}

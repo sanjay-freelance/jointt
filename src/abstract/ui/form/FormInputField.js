@@ -83,7 +83,7 @@ const ErrorAbsoluteSpan = styled('label')`
 `;
 
 export const FormInputField = (props) => {
-	const { id, field, editable, isInvalid, onChange, value } = props;
+	const { id, field, editable, isInvalid, onChange, value, onBlur } = props;
 	const { name, label, type, required, validationMessage, description, layout } = field;
 
 	function onChangeHandler(newValue) {
@@ -91,7 +91,7 @@ export const FormInputField = (props) => {
 	}
 
 	function onBlurHandler() {
-		onChange(field, value);
+		onBlur(field, value);
 	}
 
 	const descriptionUI =  description ? <DescriptionDiv>{description}</DescriptionDiv> : null;
