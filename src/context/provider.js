@@ -19,12 +19,11 @@ function ProfileProvider(props){
 	}
 
 	function setPageName(data){
-		console.log('setPageName: ', data);
 		dispatch(pageNameSetter(data))
 	}
 
 	const context = { ...globalState, setDesc,setPageName };
-	console.log(context);
+
 	return (
 	<DataContext.Provider value={context}>
 		{children}

@@ -7,7 +7,7 @@ export default function DynamicImport(props){
 
 	// componentDidMount, componentDidUpdate
 	useEffect(()=>{
-		let uiComponent = lazy(()=> import(`editor/pages/${path}`));
+		let uiComponent = lazy(()=> import(/* webpackMode: "eager" */ `editor/pages/${path}`));
 		setComponent(uiComponent);
 	},[path]);
 

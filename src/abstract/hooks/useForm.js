@@ -163,7 +163,6 @@ export default function useForm (fields, validators) {
 			return fieldCopy;
 		});
 
-		console.log(formValid);
 		setFields(newFields);
 		setIsValid(formValid);
 	}, [fields]);
@@ -199,7 +198,7 @@ export default function useForm (fields, validators) {
 			}
 
 			const validForm = isFormValid(formFields, name, validationChanges.isValid);
-			console.log(validForm);
+
 			setIsValid(validForm);
 		}
 

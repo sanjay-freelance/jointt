@@ -40,6 +40,7 @@ export default function FormGroup (props) {
 			formGrpUis.push(<FormGroup metaData={formElement}
 																 key={fieldName}
 																 handleChange={handleChange}
+																 handleBlur={handleBlur}
 																 layout={grpLayout}
 																 formId={formId}
 																 fields={fields}
@@ -54,9 +55,6 @@ export default function FormGroup (props) {
 
 			let formFieldUi = null;
 			let fieldValue = fieldObj.value;
-			if(fieldName === 'pageName'){
-				console.log(fieldObj)
-			}
 
 			if (type === 'text' || type === 'email') {
 				formFieldUi = (

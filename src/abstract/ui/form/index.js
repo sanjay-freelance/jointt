@@ -31,7 +31,6 @@ export default function Form(props) {
 
 
 	const { formFields, isValid, handleChange, reset } = useForm(fields, validators);
-	console.log(isValid);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -75,5 +74,46 @@ export default function Form(props) {
 		</FormContainer>
 	);
 };
+
+function getFieldsFromMetaData(formMetaData, fieldValues){
+	const resultObj = {};
+	getFields(formMetaData.children, resultObj, fieldValues);
+	return resultObj;
+}
+
+function getFields(childrenMetaData, resultObj, fieldValues){
+	childrenMetaData.map((childMetadata)=>{
+		const {type, children, name} = childMetadata;
+		if(type == 'group'){
+			getFields(children,resultObj,fieldValues)
+		} else {
+			if(fieldValues.hasOwnProperty(name)){
+				childMetadata.value =  fieldValues[name];
+			}
+			resultObj[name] = childMetadata;
+		}
+	});
+}
+
+function GlobalForm(props){
+	const {handleFieldChange, values, metaData, validators, name, submitLabel, id, editable} = props;
+
+	const fields = getFieldsFromMetaData(metaData,values);
+
+	return  (
+	<Form id={id}
+				fields={fields}
+				metaData={metaData}
+				editable={editable}
+				validators={validators}
+				name={name}
+				handleFieldChange={handleFieldChange}
+				submitLabel={submitLabel}
+	/>)
+}
+
+export {
+	GlobalForm
+}
 
 
